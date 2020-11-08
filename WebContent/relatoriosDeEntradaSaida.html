@@ -1,0 +1,97 @@
+<!--  Cabeçalho - Inicio -->
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="ISO-8859-1"> 
+	<title>Loucademia</title>
+	</head>
+	<body>
+	<header>
+		<img src="images/Loucademia_Logotipo.png">
+		<nav>
+			<div>
+				<a href="novoAluno.html">Novo aluno</a><br>
+				<a href="pesquisaDeAluno.html">Pesquisa de aluno</a><br>
+				<a href="controleDeAcesso.html">Controle de acesso</a><br>
+				<a href="relatoriosDeEntradaSaida.html">Relatórios de Entrada e Saídas</a><br>
+				<a href="relatoriosDeSituacoes.html">Relatórios de Situações</a><br>
+			</div>
+		</nav>
+	</header>
+	<!--  Cabeçalho - Fim -->
+	
+	<h1>Relatório de Entradas de Saídas</h1>
+
+	<div id="infoMessage">
+	(Aqui vai eventual mensagem de sistema confirmando sucesso ou erro)
+	</div>
+	
+	<br>
+	
+	<form>
+		<fieldset>
+			<legend>Parâmetros de Entradas e Saídas</legend>			
+			<label for="id">ID</label><br> 
+			<input type="text"name="id" id="id"><br>
+									
+			<label for="dataInicial">Data Inicial</label><br> 
+			<input type="date"name="dataInicial" id="dataInicial"><br>
+			<label for="dataFinal">Data Final</label><br> 
+			<input type="date"name="dataFinal" id="dataFinal"><br>
+								
+		</fieldset>		
+		<br>		
+		<input type="submit" value="Gerar relatório">
+	</form>
+	
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Entrada</th>
+			<th>Saída</th>
+			<th>Duração</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>André</td>
+			<td>05/03/2019 09:15:17</td>
+			<td>05/03/2019 10:05:14</td>
+			<td>00:50:10</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Carlos</td>
+			<td>05/03/2019 11:00:00</td>
+			<td>05/03/2019 12:00:00</td>
+			<td>01:00:00</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Jorge</td>
+			<td>05/03/2019 09:15:17</td>
+			<td>05/03/2019 10:05:14</td>
+			<td>00:50:10</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Fagner</td>
+			<td>05/03/2019 09:15:17</td>
+			<td>05/03/2019 10:05:14</td>
+			<td>00:50:10</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Patricia</td>
+			<td>05/03/2019 09:15:17</td>
+			<td>05/03/2019 10:05:14</td>
+			<td>00:50:10</td>
+		</tr>
+	</table>
+	
+	
+	<!-- Rodapé - Inicio -->
+	</body>
+</html>
+<!-- Rodapé - Fim -->
+
