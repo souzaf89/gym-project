@@ -23,7 +23,7 @@
 					<label for="nome">Nome</label><br /> 																		
 					<input type ="text" jsf:value="#{alunoBean.aluno.nome}" id="nome" /> <br /> 								
 					<label for="sexo">Sexo</label><br />
-					<select jsf:value="{alunoBean.aluno.sexo}" id="sexo" size="0">
+					<select jsf:value="#{alunoBean.aluno.sexo}" id="sexo" size="0">
 						<f:selectItems value="#{dataBean.sexos}"  />
 					</select><br /> 
 					<label for="rg">RG</label><br /> 

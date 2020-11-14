@@ -31,7 +31,7 @@ public class Aluno implements Serializable{
 	private String nome;
 	
 	@Enumerated
-	@Column(name = "SEXO", nullable = false)
+	@Column(name = "SEXO", nullable = false, length = 1)
 	private Sexo sexo;
 	
 	@Column(name = "RG", nullable = false, length = 10)
@@ -52,6 +52,11 @@ public class Aluno implements Serializable{
 	
 	@Embedded
 	private Telefone telefone = new Telefone ();
+	
+	public void gerarMatricula() {
+		//TODO: Colocar lógica aqui
+		this.matricula = "00000001";
+	}
 
 	public String getMatricula() {
 		return matricula;

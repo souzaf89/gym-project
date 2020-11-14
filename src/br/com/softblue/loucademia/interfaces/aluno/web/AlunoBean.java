@@ -2,9 +2,11 @@ package br.com.softblue.loucademia.interfaces.aluno.web;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import br.com.softblue.loucademia.application.service.AlunoService;
 import br.com.softblue.loucademia.domain.aluno.Aluno;
 
 @Named
@@ -12,10 +14,14 @@ import br.com.softblue.loucademia.domain.aluno.Aluno;
 public class AlunoBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
+	@EJB
+	private AlunoService alunoService;
+	
 	private Aluno aluno = new Aluno();
 	
 	public String gravar () {
-		System.out.println("ALUNO ==> " + aluno);
+		
+		alunoService.createOrUpdate(aluno);
 		return null;
 	}
 	
