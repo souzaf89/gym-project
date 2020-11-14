@@ -9,10 +9,15 @@ import br.com.softblue.loucademia.domain.aluno.Aluno;
 
 @Named
 @RequestScoped
-public class AunoBean implements Serializable{
+public class AlunoBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Aluno aluno = new Aluno();
+	
+	public String gravar () {
+		System.out.println("ALUNO ==> " + aluno);
+		return null;
+	}
 	
 	public Aluno getAluno() {
 		return aluno;
