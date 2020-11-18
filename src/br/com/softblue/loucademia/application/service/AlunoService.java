@@ -1,6 +1,5 @@
 package br.com.softblue.loucademia.application.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,6 +7,7 @@ import javax.ejb.Stateless;
 
 import br.com.softblue.loucademia.application.util.StringUtils;
 import br.com.softblue.loucademia.application.util.Validation;
+import br.com.softblue.loucademia.application.util.ValidationException;
 import br.com.softblue.loucademia.domain.aluno.Aluno;
 import br.com.softblue.loucademia.domain.aluno.AlunoRepository;
 
@@ -48,9 +48,9 @@ public class AlunoService {
 	}
 	
 	public List<Aluno> listAlunos (String matricula, String nome, Integer rg, Integer telefone) {
-		Aluno aluno = alunoRepository.findByMatricula(matricula);
-		List<Aluno> alunos = new ArrayList<Aluno>();
-		alunos.add(aluno);
-		return alunos;
+		if (StringUtils.isEmpty(matricula) && StringUtils.isEmpty(nome) && rg == null && telefone == null) {
+			throw new ValidationException("Pelo menos um critério de pesquisa deve ser fornecido");
+		}
+		return alunoRepository.listAlunos(matricula, nome, rg, telefone);
 	}
 }

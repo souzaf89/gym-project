@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.softblue.loucademia.application.service.AlunoService;
+import br.com.softblue.loucademia.application.util.ValidationException;
 import br.com.softblue.loucademia.domain.aluno.Aluno;
 
 @Named
@@ -18,6 +22,9 @@ public class PesquisaAlunoBean implements Serializable {
 	@EJB
 	private AlunoService alunoService;
 	
+	@Inject
+	private FacesContext facesContext;
+	
 	private String matricula;
 	private String nome;
 	private Integer rg;
@@ -26,7 +33,11 @@ public class PesquisaAlunoBean implements Serializable {
 	private List<Aluno> alunos;
 	
 	public String pesquisar () {
+		try {
 		alunos = alunoService.listAlunos(matricula, nome, rg, telefone);
+		} catch (ValidationException e) {
+			facesContext.addMessage(null, new FacesMessage(e.getMessage()) );
+		}
 		return null;
 	}
 	
