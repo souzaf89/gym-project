@@ -34,26 +34,30 @@
 		
 		<input type="submit" value="Gerar relatório" jsf:action="#{relatorioSituacoesBean.gerarRelatorio}" />	
 	
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Nome</th>
-						<th>Situação</th>
-						<th>Celular</th>
-						<th>Fixo</th>
-						<th>Ações</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>Fagner</td>
-						<td>Ativo</td>
-						<td>41 1234-5678</td>
-						<td>41 1234-5678</td>
-						<td>
-							<input type="button" value="Editar" />
-						</td>
-					</tr>						
-				</table>
+			<h:panelGroup rendered="#{not empty relatorioSituacoesBean.alunos}">
+					<table>
+						<tr>
+							<th>Matrícula</th>
+							<th>Nome</th>
+							<th>Situação</th>
+							<th>Celular</th>
+							<th>Fixo</th>
+							<th>Ações</th>
+						</tr>
+						<ui:repeat var="a" value="#{relatorioSituacoesBean.alunos}">
+							<tr>
+								<td>#{a.matricula}</td>
+								<td>#{a.nome}</td>
+								<td>#{a.situacao}</td>
+								<td>#{dataBean.formatTelefone(a.telefone.dddCelular, a.telefone.numeroCelular)}</td>
+								<td>#{dataBean.formatTelefone(a.telefone.dddFixo, a.telefone.numeroFixo)}</td>
+								<td>
+									<input type="button" value="Editar" jsf:outcome="dadosAluno?matricula=#{a.matricula}" />
+								</td>
+							</tr>
+						</ui:repeat>						
+					</table>
+				</h:panelGroup>	
 			</form>	
 		</ui:define>
 	</ui:composition>
