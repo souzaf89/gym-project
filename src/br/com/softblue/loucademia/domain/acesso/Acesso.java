@@ -22,18 +22,44 @@ public class Acesso implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false )
+	@Column(name = "ID", nullable = false)
 	private Integer id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "ALUNO_ID", nullable = false)
 	private Aluno aluno;
-	
-	@Column(name = "ENTRADA", nullable = false )
+
+	@Column(name = "ENTRADA", nullable = false)
 	private LocalDateTime entrada;
-	
+
 	@Column(name = "SAIDA", nullable = true)
 	private LocalDateTime saida;
+
+	public boolean isEntradaSaidaPreenchidas() {
+		if (entrada != null && saida != null) {
+			return true;
+		}
+		return false;
+	}
+
+	public TipoAcesso registrarAcesso() {
+		LocalDateTime now = LocalDateTime.now();
+		TipoAcesso tipoAcesso;
+
+		if (entrada == null) {
+			entrada = now;
+			tipoAcesso = TipoAcesso.Entrada;
+
+		} else if (saida == null) {
+			saida = now;
+			tipoAcesso = TipoAcesso.Saida;
+
+		} else {
+			tipoAcesso = null;
+		}
+
+		return tipoAcesso;
+	}
 
 	public Integer getId() {
 		return id;
@@ -95,7 +121,6 @@ public class Acesso implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
-	
-	
+	}
+
 }
