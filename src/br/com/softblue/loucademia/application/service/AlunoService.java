@@ -9,6 +9,7 @@ import br.com.softblue.loucademia.application.util.StringUtils;
 import br.com.softblue.loucademia.application.util.Validation;
 import br.com.softblue.loucademia.application.util.ValidationException;
 import br.com.softblue.loucademia.domain.aluno.Aluno;
+import br.com.softblue.loucademia.domain.aluno.Aluno.Situacao;
 import br.com.softblue.loucademia.domain.aluno.AlunoRepository;
 
 @Stateless
@@ -52,5 +53,10 @@ public class AlunoService {
 			throw new ValidationException("Pelo menos um critério de pesquisa deve ser fornecido");
 		}
 		return alunoRepository.listAlunos(matricula, nome, rg, telefone);
+	}
+	
+	public List<Aluno> listSituaAlunos(Situacao situacao) {
+		Validation.assertNotEmpty(situacao);
+		return alunoRepository.listSituacoesAlunos(situacao);
 	}
 }
