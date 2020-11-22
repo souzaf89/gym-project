@@ -8,20 +8,11 @@
 	lang="pt-br"> 	
 
 	<ui:composition template="layout.xhtml">
-		<ui:define name="conteudo">	
-			<h1>Controle de Acesso</h1>
-
-			<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-				<div id="infoMessage">
-					<h:messages />
-				</div>
-			</h:panelGroup>
-	
-	<br />
-		
+	<ui:param name="title" value="Controle de Acesso" />
+		<ui:define name="conteudo">		
 		<form jsf:id="form">
 			<fieldset>
-				<legend>Parâmetros da Acesso </legend>			
+				<legend>Parâmetros da Acesso </legend>	
 				<label for="id">Matrícula</label><br /> 				
 				<input type="text" jsf:value="#{controleAcessoBean.matricula}" id="id" jsf:label="Matrícula" /><br />								
 				<label for= "rg">RG</label><br /> 
