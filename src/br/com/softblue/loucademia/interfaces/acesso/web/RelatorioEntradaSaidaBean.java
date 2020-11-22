@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.softblue.loucademia.application.service.AlunoService;
+import br.com.softblue.loucademia.application.util.StringUtils;
 import br.com.softblue.loucademia.application.util.ValidationException;
 import br.com.softblue.loucademia.domain.acesso.Acesso;
 
@@ -31,6 +32,12 @@ public class RelatorioEntradaSaidaBean implements Serializable{
 	private LocalDate dataFinal;
 	
 	private List<Acesso> acessos;
+	
+	public void carregarAluno() {
+		if (!StringUtils.isEmpty(matricula)) {
+			gerarRelatorio();
+		}
+	}
 	
 	public String gerarRelatorio() {
 		try {
