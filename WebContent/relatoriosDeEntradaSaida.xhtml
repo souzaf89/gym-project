@@ -26,36 +26,49 @@
 					<label for="id">Matricula</label><br /> 
 					<input type= "text" jsf:value="#{relatorioEntradaSaidaBean.matricula}" id= "id" /><br />											
 					<label for="dataInicial">Data Inicial</label><br /> 
-					<input type= "date" jsf:value="#{relatorioEntradaSaidaBean.dataInicial}" id= "dataInicial">
-						<f:convertDateTime type="locaDate" pattern="yyyy-MM-dd" />
+					<input type= "date" jsf:value="#{relatorioEntradaSaidaBean.dataInicial}" id="dataInicial">
+						<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 					</input><br />
 					<label for="dataFinal">Data Final</label><br />
-					<input type= "date" jsf:value="#{relatorioEntradaSaidaBean.dataFinal}" id= "dataFinal">
-						<f:convertDateTime type="locaDate" pattern="yyyy-MM-dd" />
+					<input type= "date" jsf:value="#{relatorioEntradaSaidaBean.dataFinal}" id="dataFinal">
+						<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 					</input>								
 				</fieldset>	
 					
 				<br />	
 					
 				<input type="submit" value="Gerar relatório" jsf:action="#{relatorioEntradaSaidaBean.gerarRelatorio}" />
-			</form>
+			
 	
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Nome</th>
-						<th>Entrada</th>
-						<th>Saída</th>
-						<th>Duração</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>André</td>
-						<td>05/03/2019 09:15:17</td>
-						<td>05/03/2019 10:05:14</td>
-						<td>00:50:10</td>
-					</tr>
-				</table>
+						<h:panelGroup rendered="#{not empty relatorioEntradaSaidaBean.acessos}">
+							<table>
+								<tr>
+									<th>Matrícula</th>
+									<th>Nome</th>
+									<th>Entrada</th>
+									<th>Saída</th>
+									<th>Duração</th>
+								</tr>
+								<ui:repeat var="a" value="#{relatorioEntradaSaidaBean.acessos}">
+									<tr>
+										<td>#{a.aluno.matricula}</td>
+										<td>#{a.aluno.nome}</td>
+										<td>
+											<h:outputText value="#{a.entrada}">
+												<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+										</td>
+										<td>
+											<h:outputText value="#{a.saida}">
+												<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+											</h:outputText>
+										</td>
+										<td>#{a.calcularDuracao()}</td>
+									</tr>
+								</ui:repeat>
+							</table>
+						</h:panelGroup>
+					</form>
 		</ui:define>
 	</ui:composition>
 </html>
