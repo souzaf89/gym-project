@@ -17,48 +17,49 @@ import br.com.softblue.loucademia.domain.aluno.Aluno;
 
 @Entity
 @Table(name = "ENTRADAS_SAIDAS")
-
 public class Acesso implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
 	private Integer id;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "ALUNO_ID", nullable = false)
 	private Aluno aluno;
-
+	
 	@Column(name = "ENTRADA", nullable = false)
 	private LocalDateTime entrada;
-
+	
 	@Column(name = "SAIDA", nullable = true)
 	private LocalDateTime saida;
-
+	
 	public boolean isEntradaSaidaPreenchidas() {
 		if (entrada != null && saida != null) {
 			return true;
 		}
+		
 		return false;
 	}
-
+	
 	public TipoAcesso registrarAcesso() {
 		LocalDateTime now = LocalDateTime.now();
 		TipoAcesso tipoAcesso;
-
+		
 		if (entrada == null) {
 			entrada = now;
 			tipoAcesso = TipoAcesso.Entrada;
-
+		
 		} else if (saida == null) {
 			saida = now;
 			tipoAcesso = TipoAcesso.Saida;
-
+		
 		} else {
 			tipoAcesso = null;
 		}
-
+		
 		return tipoAcesso;
 	}
 	
@@ -68,7 +69,7 @@ public class Acesso implements Serializable {
 		}
 		
 		Duration d = Duration.between(entrada, saida);
-		return String.format("%02d: %02d", d.toHoursPart(), d.toMinutesPart());
+		return String.format("%02d:%02d", d.toHoursPart(), d.toMinutesPart());
 	}
 
 	public Integer getId() {
@@ -132,5 +133,4 @@ public class Acesso implements Serializable {
 			return false;
 		return true;
 	}
-
 }

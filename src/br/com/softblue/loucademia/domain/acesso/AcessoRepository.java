@@ -13,18 +13,19 @@ public class AcessoRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public Acesso findUltimoAcesso (Aluno aluno) {
+	public Acesso findUltimoAcesso(Aluno aluno) {
 		try {
-				return em.createQuery("SELECT a FROM Acesso a WHERE a.aluno.matricula = :matricula ORDER BY a.id DESC", Acesso.class)
-				.setParameter ("matricula", aluno.getMatricula())
-				.setMaxResults(1)
-				.getSingleResult();
-		} catch (NoResultException e) { 
+			return em.createQuery("SELECT a FROM Acesso a WHERE a.aluno.matricula = :matricula ORDER BY a.id DESC", Acesso.class)
+					.setParameter("matricula", aluno.getMatricula())
+					.setMaxResults(1)
+					.getSingleResult();
+		
+		} catch (NoResultException e) {
 			return null;
 		}
 	}
 	
-	public void store (Acesso acesso) {
+	public void store(Acesso acesso) {
 		em.persist(acesso);
 	}
 }

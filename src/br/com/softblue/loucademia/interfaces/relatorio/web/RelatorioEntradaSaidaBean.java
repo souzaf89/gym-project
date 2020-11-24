@@ -1,4 +1,4 @@
-package br.com.softblue.loucademia.interfaces.acesso.web;
+package br.com.softblue.loucademia.interfaces.relatorio.web;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ import br.com.softblue.loucademia.domain.acesso.Acesso;
 
 @Named
 @RequestScoped
-public class RelatorioEntradaSaidaBean implements Serializable{
+public class RelatorioEntradaSaidaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -41,10 +41,11 @@ public class RelatorioEntradaSaidaBean implements Serializable{
 	
 	public String gerarRelatorio() {
 		try {
-		acessos = alunoService.listAcessosAlunos(matricula, dataInicial, dataFinal);
+			acessos = alunoService.listAcessosAlunos(matricula, dataInicial, dataFinal);
 		} catch (ValidationException e) {
 			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
 		}
+		
 		return null;
 	}
 
@@ -74,5 +75,5 @@ public class RelatorioEntradaSaidaBean implements Serializable{
 
 	public List<Acesso> getAcessos() {
 		return acessos;
-	}	
+	}
 }

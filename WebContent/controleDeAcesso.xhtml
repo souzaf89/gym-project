@@ -9,20 +9,20 @@
 
 	<ui:composition template="layout.xhtml">
 	<ui:param name="title" value="Controle de Acesso" />
-		<ui:define name="conteudo">		
-		<form jsf:id="form">
-			<fieldset>
-				<legend>Parâmetros da Acesso </legend>	
-				<label for="id">Matrícula</label><br /> 				
-				<input type="text" jsf:value="#{controleAcessoBean.matricula}" id="id" jsf:label="Matrícula" /><br />								
-				<label for= "rg">RG</label><br /> 
-				<input type="text" jsf:value="#{controleAcessoBean.rg}" id="rg" jsf:label="RG" /><br />
-				 				
-			</fieldset>		
-		<br />
-			
-		<input type="submit" value="Registrar acesso" jsf:action="#{controleAcessoBean.registrarAcesso}" />
-		</form>
-		</ui:define>
+			<ui:define name="conteudo">		
+				<form jsf:id="form">
+					<fieldset>
+						<legend>Parâmetros da Acesso </legend>	
+						<label for="id">Matrícula</label><br /> 				
+						<input type="text" jsf:value="#{controleAcessoBean.matricula}" id="id" jsf:label="Matrícula" /><br />								
+						<label for= "rg">RG</label><br /> 
+						<input type="text" jsf:value="#{controleAcessoBean.rg}" id="rg" jsf:label="RG" /><br />
+						 				
+					</fieldset>		
+					<br />
+					
+				<input type="submit" value="Registrar acesso" jsf:action="#{controleAcessoBean.registrarAcesso}" />
+				</form>
+			</ui:define>
 	</ui:composition>
 </html>

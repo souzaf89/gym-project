@@ -35,16 +35,17 @@ public class ControleAcessoBean implements Serializable {
 			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
 			return null;
 		}
+		
 		String msg;
 		if (tipoAcesso == TipoAcesso.Entrada) {
-			msg = "ENTRADA registrada !";
+			msg = "ENTRADA registrada!";
 		} else if (tipoAcesso == TipoAcesso.Saida) {
-			msg = "SAÍDA registrada !";
+			msg = "SAÍDA registrada!";
 		} else {
 			msg = "Dados de registro de acesso inconsistentes";
 		}
 		
-		facesContext.addMessage(null, new FacesMessage(msg));		
+		facesContext.addMessage(null, new FacesMessage(msg));
 		return null;
 	}
 

@@ -40,7 +40,7 @@ public class RelatorioSituacoesBean implements Serializable {
 	}
 	
 	public String gerarRelatorio() {
-		alunos = alunoService.listSituaAlunos(situacao);
+		alunos = alunoService.listSituacoesAlunos(situacao);
 		return null;
 	}
 
@@ -58,5 +58,5 @@ public class RelatorioSituacoesBean implements Serializable {
 
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
-	}	
+	}
 }

@@ -26,7 +26,7 @@ public class AlunoRepository {
 		em.persist(aluno);
 	}
 	
-	public void update (Aluno aluno) {
+	public void update(Aluno aluno) {
 		em.merge(aluno);
 	}
 	
@@ -53,13 +53,12 @@ public class AlunoRepository {
 	}
 	
 	public String getMaxMatriculaAno() {
-		return em.createQuery("SELECT MAX (a.matricula) FROM Aluno a WHERE a.matricula LIKE :ano", String.class)
-				.setParameter("ano", Year.now() + "%")
-				.getSingleResult();
+		return em.createQuery("SELECT MAX(a.matricula) FROM Aluno a WHERE a.matricula LIKE :ano", String.class)
+			.setParameter("ano", Year.now() + "%")
+			.getSingleResult();
 	}
 	
-	public List<Aluno> listAlunos(String matricula, String nome, Integer rg, Integer telefone ) {
-		
+	public List<Aluno> listAlunos(String matricula, String nome, Integer rg, Integer telefone) {
 		StringBuilder jpql = new StringBuilder("SELECT a FROM Aluno a WHERE ");
 		
 		if (!StringUtils.isEmpty(matricula)) {
@@ -72,34 +71,33 @@ public class AlunoRepository {
 		
 		if (rg != null) {
 			jpql.append("a.rg = :rg AND ");
-	}
-	
-	if (telefone != null) {
-			jpql.append ("(a.telefone.numeroCelular LIKE :celular OR a.telefone.numeroFixo LIKE :fixo) AND ");		
 		}
-	
-	jpql.append("1 = 1");
-	
-	TypedQuery<Aluno> q = em.createQuery(jpql.toString(), Aluno.class);
-	
-	if (!StringUtils.isEmpty(matricula)) {
-		q.setParameter("matricula", matricula);
-	}
-	
-	if (!StringUtils.isEmpty(nome)) {
-		q.setParameter("nome", "%" + nome + "%");
-	}
-	
-	if (rg != null) {
-		q.setParameter("rg", rg);
-}
-
-	if (telefone != null) {
-		q.setParameter("celular",  telefone);
-		q.setParameter("fixo",  telefone );
-	}
-	
-	return q.getResultList();
+		
+		if (telefone != null) {
+			jpql.append("(a.telefone.numeroCelular LIKE :celular OR a.telefone.numeroFixo LIKE :fixo) AND ");
+		}
+		
+		jpql.append("1 = 1");
+		TypedQuery<Aluno> q = em.createQuery(jpql.toString(), Aluno.class);
+		
+		if (!StringUtils.isEmpty(matricula)) {
+			q.setParameter("matricula", matricula);
+		}
+		
+		if (!StringUtils.isEmpty(nome)) {
+			q.setParameter("nome", "%" + nome + "%");
+		}
+		
+		if (rg != null) {
+			q.setParameter("rg", rg);
+		}
+		
+		if (telefone != null) {
+			q.setParameter("celular", telefone);
+			q.setParameter("fixo", telefone);
+		}
+		
+		return q.getResultList();
 	}
 	
 	public List<Aluno> listSituacoesAlunos(Situacao situacao) {
@@ -109,14 +107,14 @@ public class AlunoRepository {
 	}
 	
 	public List<Acesso> listAcessosAlunos(String matricula, LocalDate dataInicial, LocalDate dataFinal) {
-		StringBuilder jpql = new StringBuilder("SELECT a FROM Acesso a WHERE");
+		StringBuilder jpql = new StringBuilder("SELECT a FROM Acesso a WHERE ");
 		
 		if (!StringUtils.isEmpty(matricula)) {
 			jpql.append("a.aluno.matricula = :matricula AND ");
 		}
 		
 		if (dataInicial != null) {
-			jpql.append("a.entrada >= :entradaInicio AND  ");
+			jpql.append("a.entrada >= :entradaInicio AND ");
 		}
 		
 		if (dataFinal != null) {
@@ -134,7 +132,6 @@ public class AlunoRepository {
 		if (dataInicial != null) {
 			LocalDateTime ldt = LocalDateTime.of(dataInicial, LocalTime.of(0, 0, 0));
 			q.setParameter("entradaInicio", ldt);
-			
 		}
 		
 		if (dataFinal != null) {
@@ -144,4 +141,5 @@ public class AlunoRepository {
 		
 		return q.getResultList();
 	}
+	
 }
